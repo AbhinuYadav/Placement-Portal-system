@@ -1,0 +1,432 @@
+/* src/assets/main.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: block;
+  max-width: none !important;
+  background-color: #f8f9fa;
+}
+
+/* ==================== LAYOUT VARIABLES ==================== */
+:root {
+  --offcanvas-width: 280px;
+  --topNavbarHeight: 60px;
+  --sidebar-bg: #212529;
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: rgba(255, 255, 255, 0.2);
+  --transition-speed: 0.3s;
+}
+
+/* ==================== SIDEBAR STYLES ==================== */
+.sidebar-nav {
+  width: var(--offcanvas-width);
+  background-color: var(--sidebar-bg);
+  color: #fff;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+}
+
+.sidebar-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: var(--sidebar-hover);
+}
+
+.sidebar-link.active {
+  color: #fff;
+  background-color: var(--sidebar-active);
+}
+
+.sidebar-link .right-icon {
+  display: inline-flex;
+  transition: transform var(--transition-speed) ease;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+}
+
+/* Submenu styles */
+.collapse .sidebar-link {
+  padding-left: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* ==================== DESKTOP LAYOUT ==================== */
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  
+  /* Main content offset for fixed sidebar */
+  .main-content {
+    margin-left: var(--offcanvas-width);
+    margin-top: var(--topNavbarHeight);
+    min-height: calc(100vh - var(--topNavbarHeight));
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    transition: margin-left var(--transition-speed) ease;
+  }
+  
+  /* Sidebar positioning */
+  .sidebar-nav {
+    position: fixed;
+    top: var(--topNavbarHeight);
+    left: 0;
+    height: calc(100vh - var(--topNavbarHeight));
+    transform: none !important;
+    visibility: visible !important;
+    background-color: var(--sidebar-bg);
+    z-index: 1030;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Remove backdrop on desktop */
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+  
+  /* Hide mobile toggler on desktop */
+  .navbar-toggler {
+    display: none !important;
+  }
+  
+  /* Navbar fixed positioning */
+  .navbar.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1040;
+    height: var(--topNavbarHeight);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ==================== MOBILE LAYOUT ==================== */
+@media (max-width: 991.98px) {
+  .main-content {
+    margin-top: var(--topNavbarHeight);
+    min-height: calc(100vh - var(--topNavbarHeight));
+    padding: 1rem;
+  }
+  
+  .sidebar-nav {
+    background-color: var(--sidebar-bg);
+  }
+  
+  .navbar .container-fluid {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* ==================== CARD STYLES ==================== */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.card-footer {
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.5rem;
+}
+
+/* Gradient backgrounds for stat cards */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+}
+
+.bg-gradient-info {
+  background: linear-gradient(135deg, #396afc 0%, #2948ff 100%);
+}
+
+/* Stat cards */
+.stat-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-card .card-body {
+  padding: 1.5rem;
+}
+
+.stat-card .card-footer {
+  background: rgba(0, 0, 0, 0.1);
+  border-top: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ==================== TABLE STYLES ==================== */
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  border-bottom: 2px solid #e9ecef;
+  font-weight: 600;
+  color: #495057;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+}
+
+/* DataTables customization */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+  margin-bottom: 1rem;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 1rem;
+}
+
+/* ==================== BADGE STYLES ==================== */
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.badge.bg-success {
+  background: #28a745 !important;
+}
+
+.badge.bg-warning {
+  background: #ffc107 !important;
+  color: #212529;
+}
+
+.badge.bg-danger {
+  background: #dc3545 !important;
+}
+
+.badge.bg-info {
+  background: #17a2b8 !important;
+}
+
+.badge.bg-primary {
+  background: #007bff !important;
+}
+
+/* ==================== FORM STYLES ==================== */
+.form-control, .form-select {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #1266f1;
+  box-shadow: 0 0 0 0.2rem rgba(18, 102, 241, 0.25);
+}
+
+.form-floating > label {
+  padding: 0.6rem 1rem;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.btn {
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd6 0%, #6a4391 100%);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+  border: none;
+}
+
+.btn-outline-primary {
+  border: 2px solid #667eea;
+  color: #667eea;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+}
+
+/* ==================== NAVBAR STYLES ==================== */
+.navbar {
+  background: white !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar-dark .navbar-brand {
+  color: white;
+  background: none;
+  -webkit-text-fill-color: white;
+}
+
+/* ==================== DASHBOARD SPECIFIC ==================== */
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* ==================== SCROLLBAR STYLES ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
