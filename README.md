@@ -72,7 +72,7 @@ The application follows a clean **3-tier architecture**:
 └─────────────────────────────────────────────┘
 ```
 
-> See the full architecture diagram in [`/docs/architecture.jpg`](./docs/architecture.jpg).
+> See the full architecture diagram in [`/docs/architecture.png`](./docs/architecture.png).
 
 ---
 
